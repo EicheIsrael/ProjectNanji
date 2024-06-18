@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <title>Projeto NANJI</title>
+</head>
+<body>
+<!-- Div para organizar 3 colunas-->
+<div class="mainDiv">
+    <!--Div Esquerda ou Topo-->
+    <div class="leftColumn">
+        <div id="lcLogo">
+            <img id="logoCampanha" src="" alt=""> <!--images/logoJunhoLaranja2.png"-->
+        </div>
+        <div id="lcCenter">
+            <h3 id="titleMes" style="text-align: left;"></h3>
+        </div>
+        <div id="lcRight">
+            <span id="lcRightT1"></span>
+            <span id="lcRightT2"></span>
+        </div>
+    </div>
+
+    <!-- Div Coluna Central-->
+    <div class="centerColumn">
+        <!-- Cadastro -->
+        <div class="formCadastro">
+            <div class="barTitle">
+                <img id='imgNanji' src="images/girlDrAssist1_2.png" alt="" onclick="exibirNanjiPop();">
+                <h3 id="titleNanji">NANJI</h3> <!-- versao 1.4-->
+                <img src="images/iconeDataTime1.png" style="width: 20%;" alt="">
+            </div>
+            <div>
+                <button id="btnAbrirFormCadastro" onclick="">ADICIONAR LEMBRETE</button>
+            </div>
+        </div>
+        <div class="conteudo hid">
+        <div class="cad">
+            <input type="text" id="inputNovaTarefa" placeholder="Informe seu Atendimento AQUI..." size="50">
+            <div class="dateTime">
+                <input type="date" id="inputNovaData" placeholder="Data" size="25">
+                <input type="time" id="inputNovoHorario" placeholder="Hora" size="25">
+            </div>
+            
+        <div class="areaButton">
+            <button id="btnAddTarefa" style="font-size: 1.5rem;" onclick="">
+                <i class="fa fa-plus"></i>
+            </button>
+            <button id="btnHelpTarefa" onclick="ajudaAdicionar();">
+                <i class="fa fa-question-circle" style="font-size: 2rem;"></i>
+            </button>
+            <button id="btnDelTarefa">
+                <i class="fa fa-trash" style="font-size: 1.5rem;"></i>
+            </button>
+        </div>
+        </div>
+    </div>
+    
+    <!--Lista com as tarefas registradas-->
+    <div class="conteudoLista">
+        <ul id="listaTarefas">
+            <li style="display: none;">
+                <span class="textoTarefas">Tarefa1</span>
+                <div>
+                    <button class="btnAcao" onclick="alterar(idTarefa);"> <!--idTarefa-->
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btnAcao">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+   <!-- Painel para Alteração de itens-->
+   <div id="janelaEdicao">
+       <h3>ALTERAR</h3>
+       <hr>
+       <!--<form action="">-->
+            <div class="frm-linha">
+               <label class="hid" for="inputTxtEdicao" id="labelNome">#idItem</label><br>
+               <input type="text" id="inputTxtEdicao">
+            </div>
+            <div class="" style="display:flex; justify-content: space-between; align-items: center;">
+                <input type="date" id="inputDataEdicao" class="altData" placeholder="Data" size="25">
+                <input type="time" id="inputHoraEdicao" class="altHora" placeholder="Hora" size="25">
+            </div>
+            <div class="" style="display:flex; justify-content: space-between; align-items: center;">
+                <button id="btnAtualizarTarefa" onclick="editar();">SALVAR</button> <!--atributo onclick="editar(idTarefa)>-->
+                <button id="btnEdicaoFechar" onclick="ocultarModalEdicao();">CANCELAR</button>
+                    <!--<i class="fa fa-remove"></i>-->
+                </button>
+            </div>
+        <!--</form>-->
+    </div>
+    <div id="janelaEdicaoFundo"></div>
+    <div id="janelaCadastroFundo"></div>
+    <div id="janelaNanjiFundo"></div>
+
+    <!-- PopUp para mensagens em geral-->
+    <div class="divPop hid" onclick="fecharDivPop();">
+        <div>
+            <div class="popItens">
+                <img src="images/girlDrAssist1_2.png" alt="">
+                <em id="textMsg"></em>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--Div Esquerda-->
+    <div class="rightColumn">
+        <em id="rcP"></em>
+    <!--</div>-->
+    <!-- fim da mainDiv, a central-->
+    </div>
+
+<footer class="footDiv">
+    <em>ADS-Uninter-Atv.Extensionista - RU:3665376</em>
+</footer>
+   <script src="saveList.js"></script>
+</body>
+</html>

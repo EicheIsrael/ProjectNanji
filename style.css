@@ -1,0 +1,659 @@
+body {
+    background-color: rgb(225, 250, 250);
+    background-image: url(images/medicalthemeOpacity.jpg); 
+    background-repeat: repeat;
+    color: navy;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    margin-left: 3px; margin-right: 3px;
+
+    overflow-y: auto;
+}
+
+/* ----- CONFIGURAÇÃO DO MEDIA QUERY PARA TAMANHO DE TELA -----*/
+/*
+@media screen and (max-width: 800px){
+    body{
+        background-color: #8a0505;
+        background-image: none;
+    }
+    
+    .mainDiv{
+        display: grid;
+    }
+    .rightColumn{
+        display: none;
+        background-color: black;
+        width: 400px;
+    }
+    .leftColumn{
+        background-color: #06c730;
+        display: none;
+    }    
+}
+
+/* ELEMENTOS DO DOM*/
+.barTitle{
+    display: flex; align-items: center; justify-content: space-around; 
+    border: 1px solid darkgreen; 
+    border-radius: 15px 15px 0px 0px;
+    height: 35px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#imgNanji{
+    width: 20%;
+}
+
+#imgNanji:hover{
+    width: 20%;
+    cursor: pointer;
+}
+
+#titleNanji{
+    font-family: "Mukta", sans-serif;
+    font-size: 2.2rem;
+}
+
+.hid {
+    display: none;
+}
+
+.conteudo {
+    background: white;
+    width: 325px;
+    /*max-width: 400px;*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    position: fixed;
+    z-index: 50;
+    border-radius: 1rem;
+    box-shadow: 3px 3px 8px gray;
+    transform: translate(2%, -5%);
+}
+
+.conteudoLista{
+    background:rgb(228, 252, 220); opacity: 0.9;
+    width: 360px;
+    height: 300px;/*360px;*/
+    /*max-width: 500px;*/
+    /*margin-top: 10px;*/
+    margin-bottom: 10px;
+    padding: 10px;
+    aspect-ratio: 3/2;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-padding: 10px;
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cad{
+    display: grid;
+    justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+}
+
+.cad #inputNovaTarefa{
+    background: azure;
+    color: green;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1rem;
+    width: 90%;
+
+    padding: 15px;
+    border: 1px solid green;
+    border-radius: 8px;
+    outline: none;
+}
+
+.cad #inputNovaData{
+    background: azure;
+    color: green;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1rem;
+    width: 130px; height: 20px;
+    margin-top: 10px;
+    padding: 15px;
+    border: 1px solid green;
+    border-radius: 8px;
+    outline: none;
+}
+.altData {
+    background: lightblue;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1rem;
+    border: 1px solid;
+    border-radius: 8px;
+    width: 120px; height:30px;
+    padding: 10px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.altHora {
+    background: lightblue;
+    font-size: 1.1rem;
+    font-family: "Roboto", sans-serif;
+    border: 1px solid;
+    border-radius: 8px;
+    width: 100px; height:30px;
+    padding: 10px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.cad #inputNovoHorario{
+    background: azure;
+    color: green;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1rem;
+    width: 125px; height: 20px;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid green;
+    border-radius: 8px;
+    outline: none;
+}
+
+.dateTime{
+    display: flex; justify-content: space-between; align-items: center;
+}
+.topo input {
+    background: #8a0505;
+    color: moccasin;
+    font-size: 1rem;
+    width: 350px;
+
+    padding: 10px;
+    border: 3px solid rgb(54, 3, 3) ;
+    border-radius: 8px;
+    outline: none;
+}
+
+/* -----------------Botões de Cadastro ----------------------*/
+.areaButton{
+    display: flex;
+    justify-content: space-between;
+}
+
+.areaButton #btnAddTarefa{
+    color: white;
+    background: lightseagreen;
+    height: 50px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 3px green;
+    width: 100px;
+    margin-top: 10px;
+    outline: none;
+}
+
+.areaButton #btnAddTarefa:hover{
+    background: rgb(90, 221, 85);
+    cursor: pointer;
+}
+
+.areaButton #btnDelTarefa{
+    color: white;
+    background: red;
+    height: 50px;
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 3px darkred;
+    outline: none;
+}
+
+.areaButton #btnDelTarefa:hover{
+    background: red;
+    cursor: pointer;
+}
+
+.areaButton #btnHelpTarefa{
+    color: navy;
+    background: lightskyblue;
+    height: 50px;
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 3px rgb(115, 115, 221);
+    outline: none;
+}
+
+.areaButton #btnDelTarefa:hover{
+    background: red;
+    cursor: pointer;
+}
+
+/*
+.topo button {
+    background-color: brown;
+    color: antiquewhite;
+    width: 60px;
+    border: 3px solid rgb(54, 3, 3) ;
+    border-radius: 8px;
+    outline: none;
+}
+    */
+
+.topo button:hover {
+    background: rgb(17, 104, 14);
+    cursor: pointer;
+}
+
+/*-------------- Lista de itens cadastrados -------------*/
+/*-------------------------------------------------------*/
+
+.spanList {
+    width: 500px;
+}
+
+.buttonsList{
+    width: 20%;
+}
+
+.divInpList{
+    width: auto;
+}
+
+#listaTarefas {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#listaTarefas li {
+    background:  rgb(245, 245, 245);
+    color: navy;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid rgb(32, 163, 98);
+    border-left: 10px solid rgb(32,163,98);
+    align-items: center;
+    margin-top: 5px;
+}
+
+#listaTarefas .inputList{
+    background: rgb(245, 245, 245);
+    color: navy;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    width: 80px;
+    padding: 8px;
+    margin-right: 1px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    border: 2px solid rgb(32,163,98);
+    border-radius: 8px;
+    outline: none;
+}
+
+#divInpList {
+    justify-content: space-between;
+}
+
+.btnAcao {
+    background: #06c730;
+    color: white;
+    border: 2px solid rgb(32, 163, 98);
+    border-radius: 8px;
+    width: 2.25rem;
+    height: 2.25rem;
+    /*margin-right: 2px;
+    margin-left: 2px;*/
+    margin: 0.2rem;
+}
+.btnAcaoD {
+    background-color:rgb(243, 109, 109) ;
+    color: white;
+    border: 2px solid red;
+    border-radius: 8px;
+    width: 2.25rem;
+    height: 2.25rem;
+    /*margin-right: 2px;
+    margin-left: 2px;*/
+    margin: 0.2rem;
+}
+
+.btnAcao:hover {
+    background: rgb(17, 104, 14);
+    cursor: pointer;
+}
+.btnAcaoD:hover {
+    background: red;
+    cursor: pointer;
+}
+
+/* ----------------------- Janela de Edição -----------------------*/
+/*------------------------------------------------------------------*/
+
+#janelaEdicaoFundo{
+    display: none;
+    background-color: white;
+    position: fixed;
+    z-index: 196;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.8;
+}
+
+#janelaCadastroFundo{
+    display: none;
+    background-color: rgb(209, 247, 209);
+    position: fixed;
+    z-index: 49;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.8;
+}
+
+#janelaNanjiFundo{
+    display: none;
+    background-color: rgb(209, 247, 209);
+    position: fixed;
+    z-index: 199;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.8;
+}
+
+#janelaEdicao{
+    font-family: 'Roboto', sans-serif;
+    background-image: linear-gradient(rgb(213, 220, 247), rgb(255, 255, 255));
+    border-radius: 8px;
+    box-shadow: 5px 5px 15px navy;
+    display: none; /* sera exibido através da class .abrir */
+    position: fixed;
+    z-index: 197;
+    width: 320px;
+    top: 25%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-50%, -20%);
+}
+
+form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.frm-linha {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.frm-linha label {
+    margin-bottom: 7px;
+}
+
+.frm-linha input {
+    background: lightblue;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    border: 1px solid;
+    padding: 15px;
+    border-radius: 8px;
+    outline: none;
+}
+
+#btnAtualizarTarefa {
+    background: #20ad4a;
+    color: white;
+    font-size: 1rem;
+    border: 2px solid rgb(6, 82, 56) ;
+    border-radius: 40px;
+    box-shadow:3px 3px 5px #0b772c;
+    width: 130px;
+    height: 50px;
+    cursor: pointer;   
+}
+
+#btnEdicaoFechar {
+    background: #e42007;
+    color: white;
+    font-size: 1rem;
+    border: 2px solid rgb(99, 23, 3) ;
+    border-radius: 40px;
+    box-shadow:3px 3px 5px darkred;
+    width: 130px;
+    height: 50px;   
+    cursor: pointer;
+}
+
+#btnEdicaoFechar:hover {
+    background: rgb(252, 66, 20) ;
+}
+
+#btnAtualizarTarefa:hover {
+    background: #06c730;
+}
+
+/* ----------------------Configurações das Colunas---------------------*/
+.mainDiv{
+    display: grid; justify-content: space-around; align-items: center;
+    margin-left: 1%; margin-right: 1%;
+    overflow: auto;
+    /*padding: 10px;*/
+    
+    position: fixed;
+    /*min-width: 325px; */
+    top: 10px;
+    bottom:10px;
+    left: 50%;
+    padding-bottom: 40px;
+    /*transform: translate(-50%, -60%);*/
+    transform: translate(-50%, 00%);
+
+}
+.centerColumn{
+    display: grid; justify-content: center;
+    /*box-shadow: gray;
+    min-width: 300px; height: 600px;
+    /*z-index: 50;*/
+}
+
+.leftColumn{
+    display: flex; align-items: center; justify-content: space-between;
+    background-color: rgb(247, 247, 180);
+    border-radius: 30px 30px 0px 0px;
+    box-shadow:  0px 4px 8px gray;
+    width: 360px; height:60px;
+    padding: 10px;
+    margin-bottom:5px;
+    opacity: 0.9;
+}
+
+#lcLeft{
+    display: flex; align-items: center; justify-content: space-around;
+    width: 20%;
+    height: 100%;
+}
+#lcCenter{
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.2em;
+    text-align: right;
+    width: 40%;
+    height: 100%;
+}
+    
+#lcRight{
+    font-weight: bolder;
+    text-align: right;
+    width: 40%;
+    padding: 10px;
+}
+
+#logoCampanha{
+    padding: 10px;
+    width: 40px;
+}
+
+/* ---------------------------------------------- */
+.janeiro{
+    background-color: gray;
+    color:white
+}
+.fevereiro{
+    background-color:rgb(42, 9, 43);
+    color: goldenrod
+}
+.marco{
+    background-color: #c796c7;/*rgb(151, 51, 153);*/
+    color: yellow;
+}
+.abril{
+    background-color: lightcyan;
+    color: navy;
+}
+.maio{
+    background-color: yellow;
+    color: chocolate;
+}
+.junho{
+    background-color: #fa8232b9;
+    color: darkred;
+}
+.julho{
+    background-color:forestgreen;
+    color: yellow;
+}
+.agosto{
+    background-color:lightyellow;
+    color:goldenrod;
+}
+.setembro{
+    background-color:rgb(41, 41, 41);
+    color:white;
+}
+.outubro{
+    background-color:rgb(252, 207, 213);
+    color:deeppink;
+}
+.novembro{
+    background-color:azure;
+    color:blue;
+}
+.dezembro{
+    background-color:firebrick;
+    color:yellow;
+}
+
+a{
+    text-decoration: none;
+    text-decoration-color: none;
+}
+
+.rightColumn{
+    display: flex; align-items: center;
+    font-size: 0.9rem;
+    border-radius: 00px 0px 30px 30px;
+    box-shadow: 3px 3px 5px darkgrey;
+    width: 360px; height: 60px;
+    padding: 10px;
+    /*padding-top: 50px;*/
+    text-align: center;
+    opacity: 0.9;
+}
+
+.formCadastro{
+    background-color: rgb(181, 241, 181);
+    color: navy; 
+    font-family: "Roboto", sans-serif;
+    font-size: 20pt;
+    width: 340px; height: 115px;
+    /*max-width: 500px;*/
+    padding: 20px;
+    margin-bottom: 4px;
+    text-align: center;
+    /*border-radius: 40px 40px 0px 0px;*/
+    
+}
+
+#btnAbrirFormCadastro {
+    background-color: #0b772c ;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    border: 1px solid navy ;
+    border-radius: 100px;
+    box-shadow: 3px 3px 5px green;
+    width: 90%;
+    /*margin-bottom: 10px;*/
+    height: 45px;   
+    cursor: pointer;
+}
+
+#btnAbrirFormCadastro:hover {
+    background-color:#06c730 ;
+}
+
+
+/*---------------- Elementos Pop-up  ------------------*/
+.popItens{
+    display: flex; justify-content: space-between; align-items: center;
+    background-color: white;
+    font-size: 0.9rem;
+    border: 1px solid lightgreen;
+    border-radius: 3px;
+    padding: 10px;
+}
+.divPop{
+    background-color: rgb(235, 248, 244);
+    font-family: "Roboto", sans-serif;
+    font-style: italic;
+    color: green;
+
+    display: none;
+    position: fixed;
+    width: 345px;
+    z-index: 300;
+    padding: 15px;
+    box-sizing: border-box;
+    transform: translate(3%, 28%); /*posição x, y*/
+
+    border: 1px solid green;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px darkgreen;
+    cursor: pointer;
+}
+.divPop img{
+    width: 110px;
+    margin-right: 10px;
+}
+
+#textMsg{
+    font-family: 'Roboto', sans-serif;
+    padding: 5px;
+    text-align: left;
+}
+
+.divPop span {
+    color: crimson;
+    font-weight: bold;
+}
+
+/*-------  Rodapé ----------*/
+footer{
+    /*position: absolute;*/
+    width: 100%;
+    margin-top: 5px; margin-bottom: 5px;
+    text-align: center;
+}
