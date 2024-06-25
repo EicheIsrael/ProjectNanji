@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,15 +51,9 @@
             </div>
             
         <div class="areaButton">
-            <button id="btnAddTarefa" style="font-size: 1.5rem;" onclick="">
-                <i class="fa fa-plus"></i>
-            </button>
-            <button id="btnHelpTarefa" onclick="ajudaAdicionar();">
-                <i class="fa fa-question-circle" style="font-size: 2rem;"></i>
-            </button>
-            <button id="btnDelTarefa">
-                <i class="fa fa-trash" style="font-size: 1.5rem;"></i>
-            </button>
+            <button id="btnAddTarefa" onclick="">Salvar</button>
+            <button id="btnHelpTarefa" onclick="ajudaAdicionar();">Ajuda</button>
+            <button id="btnDelTarefa">Cancelar</button>
         </div>
         </div>
     </div>
@@ -71,7 +65,7 @@
                 <span class="textoTarefas">Tarefa1</span>
                 <div>
                     <button class="btnAcao" onclick="alterar(idTarefa);"> <!--idTarefa-->
-                        <i class="fa fa-pencil"></i>
+                        <img src="images/editIcon.png"> <!-- class="fa fa-pencil"-->
                     </button>
                     <button class="btnAcao">
                         <i class="fa fa-trash"></i>
@@ -112,6 +106,9 @@
                 <img src="images/girlDrAssist1_2.png" alt="">
                 <em id="textMsg"></em>
             </div>
+            <div  style="display: flex; justify-content: center;">
+                <button id="popClose">CONTINUAR</button>
+            </div>
         </div>
     </div>
 </div>
@@ -124,7 +121,7 @@
     </div>
 
 <footer class="footDiv">
-    <em>ADS-Uninter-Atv.Extensionista - RU:3665376</em>
+    <em>ADS-Uninter-Atv.Extensionista - RU:3665376</em><br>
 </footer>
    <script src="saveList.js"></script>
 </body>

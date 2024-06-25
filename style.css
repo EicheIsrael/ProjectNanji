@@ -185,13 +185,26 @@ body {
 }
 
 .areaButton #btnAddTarefa{
-    color: white;
-    background: lightseagreen;
+    /*color: white;
+    font-size: 1.1rem;
+    background: green;
     height: 50px;
     border-radius: 50px;
     box-shadow: 3px 3px 3px green;
     width: 100px;
     margin-top: 10px;
+    outline: none;*/
+
+    background: #20ad4a;
+    color: white;
+    font-size: 1rem;
+    border: 2px solid rgb(6, 82, 56) ;
+    border-radius: 40px;
+    box-shadow:2px 2px 3px #0b772c;
+    width: 100px;
+    height: 50px;
+    margin-top:10px;
+    cursor: pointer;
     outline: none;
 }
 
@@ -201,34 +214,56 @@ body {
 }
 
 .areaButton #btnDelTarefa{
-    color: white;
+    /*color: white;
     background: red;
     height: 50px;
     width: 100px;
     margin-top: 10px;
     border-radius: 50px;
     box-shadow: 3px 3px 3px darkred;
-    outline: none;
+    outline: none;*/
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    border: 2px solid rgb(6, 82, 56) ;
+    border-radius: 40px;
+    box-shadow:2px 2px 3px darkred;
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+
 }
 
 .areaButton #btnDelTarefa:hover{
-    background: red;
+    background: darkred;
     cursor: pointer;
 }
 
 .areaButton #btnHelpTarefa{
-    color: navy;
+    /*color: navy;
     background: lightskyblue;
     height: 50px;
     width: 100px;
     margin-top: 10px;
     border-radius: 50px;
     box-shadow: 3px 3px 3px rgb(115, 115, 221);
-    outline: none;
+    outline: none;*/
+    background-color:lightskyblue;
+    color: navy;
+    font-size: 1rem;
+    border: 2px solid rgb(6, 82, 56) ;
+    border-radius: 40px;
+    box-shadow:2px 2px 3px navy;
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
 }
 
-.areaButton #btnDelTarefa:hover{
-    background: red;
+.areaButton #btnHelpTarefa:hover{
+    background: blue;
+    color: white;
     cursor: pointer;
 }
 
@@ -256,7 +291,10 @@ body {
 }
 
 .buttonsList{
-    width: 20%;
+    display: grid;
+    place-items: center;
+    padding-left: 0.2rem; padding-right:0.35rem;
+    width: 8.5%;
 }
 
 .divInpList{
@@ -306,24 +344,27 @@ body {
 .btnAcao {
     background: #06c730;
     color: white;
+    font-size: 0.7rem;
     border: 2px solid rgb(32, 163, 98);
     border-radius: 8px;
-    width: 2.25rem;
-    height: 2.25rem;
-    /*margin-right: 2px;
-    margin-left: 2px;*/
-    margin: 0.2rem;
+    width: 2.1rem;
+    height: 2.35rem;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    
 }
+
 .btnAcaoD {
     background-color:rgb(243, 109, 109) ;
     color: white;
+    font-size: 0.7rem;
     border: 2px solid red;
     border-radius: 8px;
-    width: 2.25rem;
-    height: 2.25rem;
-    /*margin-right: 2px;
-    margin-left: 2px;*/
-    margin: 0.2rem;
+    width: 2.1rem;
+    height: 2.3rem;
+    padding: 0.2rem;   
+    margin-top: 0.4rem;
+    box-sizing: border-box;
 }
 
 .btnAcao:hover {
@@ -366,6 +407,7 @@ body {
     display: none;
     background-color: rgb(209, 247, 209);
     position: fixed;
+    width: 700px;
     z-index: 199;
     bottom: 0;
     top: 0;
@@ -423,7 +465,7 @@ form {
     box-shadow:3px 3px 5px #0b772c;
     width: 130px;
     height: 50px;
-    cursor: pointer;   
+    cursor: pointer;
 }
 
 #btnEdicaoFechar {
@@ -648,6 +690,17 @@ a{
 .divPop span {
     color: crimson;
     font-weight: bold;
+}
+
+#popClose {
+    background-color: crimson;
+    color: white;
+    text-align: center;
+    height: 30px;
+    margin-top: 15px;
+    border-radius: 50px;
+    box-shadow: 2px 2px 5px red;
+    cursor: pointer;
 }
 
 /*-------  Rodapé ----------*/

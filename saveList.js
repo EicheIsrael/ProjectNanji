@@ -70,7 +70,7 @@ btnDelTarefa.addEventListener('click', (e) => {
 
 function ajudaAdicionar () {
     exibirNanjiPop(
-        `É bem simples! Pegue o seu comprovante de atendimento que recebeu na UBS Bateas. Em <strong><span>atendimento</span></strong>, poderá digitar algo assim: <strong>Médico - Dr. House</strong>; ou assim:<strong> Dentista Dra. Grey</strong>. Logo abaixo tem um <strong><span>calendário e um relógio</span></strong> onde você vai tocar e escolher a <strong><span>data e a hora da consulta</span></strong>. Para finalizar, toque no <strong>botão verde para salvar</strong> ou no <strong>vermelho para cancelar!</strong>`
+        `É muito fácil e rápido adicionar um novo lembrete! Veja as informações no comprovante de atendimento que recebeu na UBS Bateas. Em <strong><span>ATENDIMENTO</span></strong>, poderá digitar algo assim: <strong>Médico - Dr. House</strong>; ou assim:<strong> Dentista Dra. Grey</strong>. Logo abaixo, poderá informar a<strong><span> data na esquerda</span></strong> e a <strong><span>hora na direita</span></strong>. Para finalizar, toque no <strong>botão verde para SALVAR</strong> ou no <strong>vermelho para CANCELAR!</strong>`
     );
 }
 
@@ -85,7 +85,7 @@ function exibirNanjiPop(msgFlag){
     divPop.style.width = '360px';
     imgNanji.style.opacity = '0.3';
     if (!msgFlag){
-        let i = Math.floor(Math.random() * 4);
+        let i = Math.floor(Math.random() * 5);
         switch(i){
             case 0:
                 textMsg.innerHTML = String("Olá! Sou a <strong>Assistente Nanji.</strong> A propósito,"
@@ -101,6 +101,9 @@ function exibirNanjiPop(msgFlag){
                 break;
             case 3:
                 textMsg.innerHTML = `<strong><span>IMPORTANTE:</span></strong> Estou salvando estas informações no aparelho que está usando nesse momento. Estas informações <strong><span>não estão na Internet</span></strong>. Salve este site ou link na <strong>tela inicial do computador ou celular</strong> para acessá-las novamente!`;
+                break;
+            case 4:
+                textMsg.innerHTML = `<strong><span>Dicas:</span></strong> Estarei sempre na tela inicial... Se precisar de detalhes, toque no meu laptop e estarei dando mais informações. Ao abrir a tela <span>ADICIONAR LEMBRETE</span>, o <strong>botão azul de Ajuda dará mais instruções.</strong>`;
                 break;
         } 
     }
@@ -135,8 +138,9 @@ function criarTagLI(tarefa){
     let divSpan = document.createElement('div');
     let txtData = document.createElement('input');
     let txtHora = document.createElement('input');
-    let btnAlterar = document.createElement('button');
-    let btnExcluir = document.createElement('button');
+    //let btnAlterar = document.createElement('button');
+    let btnAlterar = document.createElement('img');
+    let btnExcluir = document.createElement('img');
     console.log('tagLi ID > ', tarefa.id);
     
     span.classList.add('textoTarefas');
@@ -147,14 +151,17 @@ function criarTagLI(tarefa){
     txtHora.setAttribute('class', 'inputList');
     txtData.setAttribute('id', 'data' + tarefa.id);
     txtHora.setAttribute('id', 'hora' + tarefa.id);
-    console.log("Data Formato: " + txtData.value);
+    //console.log("Data Formato: " + txtData.value);
     btnAlterar.classList.add('btnAcao');
-    btnAlterar.innerHTML = '<i class="fa fa-pencil"></i>';
+    btnAlterar.setAttribute('src', 'images/editIcon.png');
+    //btnAlterar.innerHTML = '<i class="fa fa-pencil"></i>';
+    //btnAlterar.innerHTML = 'Alt';
     btnAlterar.setAttribute
             ('onclick', `alterar('${tarefa.id}','${tarefa.campoData}','${tarefa.campoHorario}');`);
 
     btnExcluir.classList.add('btnAcaoD');
-    btnExcluir.innerHTML = '<i class="fa fa-trash"></i>';
+    btnExcluir.setAttribute('src', "images/trashed.png");
+    //btnExcluir.innerHTML = 'Exc';//<i class="fa fa-trash"></i>';
     btnExcluir.setAttribute('onclick', 'excluir(' + tarefa.id + ');');
     txtData.value = formatarData(tarefa.campoData);
 
@@ -351,7 +358,7 @@ function sendData(idTarefa){
 function loadData(){
     let flag = false;
     if(!localStorage.dadosNanji){
-        exibirNanjiPop(`Separei um espacinho da memória para o seu Sistema Nanji... <strong>Toque aqui para Continuar...</strong>`);
+        exibirNanjiPop(`Separei um espacinho da memória para os seus lembretes aqui no Project Nanji. Caso necessite, <span>posso lhe dar algumas informações</span>, bastando <span>tocar no meu notebook</span> na tela inicial.`);
         localStorage.setItem("dadosNanji", []);
     }
     else{
@@ -372,8 +379,8 @@ function loadData(){
             let divSpan = document.createElement('div');
             let txtData = document.createElement('input');
             let txtHora = document.createElement('input');
-            let btnAlterar = document.createElement('button');
-            let btnExcluir = document.createElement('button');
+            let btnAlterar = document.createElement('img');
+            let btnExcluir = document.createElement('img');
 
             span.classList.add('textoTarefas');
             span.innerHTML = dadosNanjiJSON[i].tarefa;
@@ -387,12 +394,14 @@ function loadData(){
             //txtData.value = formatarData(newDataF);
 
             btnAlterar.classList.add('btnAcao');
-            btnAlterar.innerHTML = '<i class="fa fa-pencil"></i>';
+            btnAlterar.setAttribute('src', 'images/editIcon.png');
+            //btnAlterar.innerHTML = 'ALT'//'<i class="fa fa-pencil"></i>';
             btnAlterar.setAttribute
             ('onclick', `alterar('${dadosNanjiJSON[i].id}','${String(dataFormatoOriginal(dadosNanjiJSON[i].data))}','${String(dadosNanjiJSON[i].hora)}');`); //String(dadosNanjiJSON[i].data)
 
             btnExcluir.classList.add('btnAcaoD');
-            btnExcluir.innerHTML = '<i class="fa fa-trash"></i>';
+            //btnExcluir.innerHTML = 'EXC'//'<i class="fa fa-trash"></i>';
+            btnExcluir.setAttribute('src', 'images/trashed.png');
             btnExcluir.setAttribute('onclick', 'excluir(' + dadosNanjiJSON[i].id + ');');
 
             divSpan.setAttribute('class', 'spanList');
