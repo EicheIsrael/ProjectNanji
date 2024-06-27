@@ -14,10 +14,10 @@ let btnAddTarefa = document.querySelector("#btnAddTarefa");
 let listaTarefas = document.querySelector("#listaTarefas");
 let divFormCadastro = document.querySelector(".conteudo");
 let frameFundo = document.querySelector("#janelaEdicaoFundo");
-//let btnEdicaoFechar = document.getElementById("btnEdicaoFechar");
+
 loadData();
 campanhaMensal();
-//-----------------------
+
 inputNovaTarefa.addEventListener('keypress', (e) => {
     if (e.keyCode == 13 ) { //tecla pressionada for code 13 (Enter)
         if (validarInputs()){
@@ -51,7 +51,6 @@ btnAbrirFormCadastro.addEventListener('click', (e) => {
     let cadastroFundo = document.querySelector('#janelaCadastroFundo');
     conteudo.classList.remove('hid');
     cadastroFundo.style.display = 'block';
-    //console.log(conteudo);
 });
 
 function fecharCadastroFundo(){
@@ -103,7 +102,7 @@ function exibirNanjiPop(msgFlag){
                 textMsg.innerHTML = `<strong><span>IMPORTANTE:</span></strong> Estou salvando estas informações no aparelho que está usando nesse momento. Estas informações <strong><span>não estão na Internet</span></strong>. Salve este site ou link na <strong>tela inicial do computador ou celular</strong> para acessá-las novamente!`;
                 break;
             case 4:
-                textMsg.innerHTML = `<strong><span>Dicas:</span></strong> Estarei sempre na tela inicial... Se precisar de detalhes, toque no meu laptop e estarei dando mais informações. Ao abrir a tela <span>ADICIONAR LEMBRETE</span>, o <strong>botão azul de Ajuda dará mais instruções.</strong>`;
+                textMsg.innerHTML = `<strong><span>Dicas:</span></strong> Estarei sempre na tela inicial... Se precisar de detalhes, toque no meu notebook e estarei dando mais informações. Ao abrir a tela <span>ADICIONAR LEMBRETE</span>, o <strong>botão azul de Ajuda</strong> dará instruções de como preencher um lembrete.`;
                 break;
         } 
     }
@@ -138,7 +137,6 @@ function criarTagLI(tarefa){
     let divSpan = document.createElement('div');
     let txtData = document.createElement('input');
     let txtHora = document.createElement('input');
-    //let btnAlterar = document.createElement('button');
     let btnAlterar = document.createElement('img');
     let btnExcluir = document.createElement('img');
     console.log('tagLi ID > ', tarefa.id);
@@ -151,17 +149,13 @@ function criarTagLI(tarefa){
     txtHora.setAttribute('class', 'inputList');
     txtData.setAttribute('id', 'data' + tarefa.id);
     txtHora.setAttribute('id', 'hora' + tarefa.id);
-    //console.log("Data Formato: " + txtData.value);
     btnAlterar.classList.add('btnAcao');
     btnAlterar.setAttribute('src', 'images/editIcon.png');
-    //btnAlterar.innerHTML = '<i class="fa fa-pencil"></i>';
-    //btnAlterar.innerHTML = 'Alt';
     btnAlterar.setAttribute
             ('onclick', `alterar('${tarefa.id}','${tarefa.campoData}','${tarefa.campoHorario}');`);
 
     btnExcluir.classList.add('btnAcaoD');
     btnExcluir.setAttribute('src', "images/trashed.png");
-    //btnExcluir.innerHTML = 'Exc';//<i class="fa fa-trash"></i>';
     btnExcluir.setAttribute('onclick', 'excluir(' + tarefa.id + ');');
     txtData.value = formatarData(tarefa.campoData);
 
@@ -181,27 +175,21 @@ function criarTagLI(tarefa){
     tagLi.appendChild(divButtons);
     tagLi.setAttribute('id', tarefa.id);
     
-    //insertReg(tarefa);
     sendData(tarefa);
     return tagLi;
 }
 
 function alterar(idTarefa, dataTarefa, horaTarefa){
     let idLi = document.getElementById(''+ idTarefa +''); //idTarefa
-    //console.log(idLi.);
     if (idLi){
         let labelFrame = document.querySelector("#labelNome");
         let abrirFrame = document.querySelector("#janelaEdicao");
-        //let fundo = document.querySelector('#janelaCadastroFundo');
-        //let abrirFrameFundo = document.querySelector("#janelaEdicaoFundo");
         
         abrirFrame.style.display = 'block';
         frameFundo.style.display = 'block';
-        //fundo.style.display = 'block';
         labelFrame.innerHTML = ('#' + idTarefa);
         inputTxtEdicao.value = idLi.firstChild.textContent;
         inputDataEdicao.value = dataTarefa; //idLi.nextSibling.textContent;
-        //inputDataEdicao.value = dataFormatoOriginal(dataTarefa); //idLi.nextSibling.textContent;
         inputHoraEdicao.value = horaTarefa; //idLi.nextSibling.textContent;
 
         contexto = {
@@ -215,7 +203,6 @@ function alterar(idTarefa, dataTarefa, horaTarefa){
         alert('Erro ao identificar elemento...');
     }
 
-    //console.log(contexto);
     return contexto;
 }
 
@@ -243,39 +230,37 @@ function editar(){
         exibirNanjiPop(`Se está agendado para hoje eu não preciso registrar, mas sugiro que <span>fique atento ao horário marcado.</span>`);
         return false;
     }
-    //else {
-        let confirma = window.confirm('Salvar Alterações?');
-        if (confirma){
-            let idLi = document.getElementById(''+ contexto.id +'');
-            if (idLi){
-                let auxData = "data" + contexto.id;
-                let auxHora = "hora" + contexto.id;
-                //let outTxt = document.getElementById('inputTxtEdicao');
-                let outData = document.getElementById(auxData);
-                let outHora = document.getElementById(auxHora);
-                console.log('Antes: Data ' + inputDataEdicao.value);
-                console.log('Post: Hora ' + inputHoraEdicao.value);
-                
-                idLi.firstChild.textContent = inputTxtEdicao.value;
-                outData.value = formatarData(inputDataEdicao.value);
-                outHora.value = inputHoraEdicao.value;
-                
-                registro = {
-                    id: contexto.id,
-                    tarefa: inputTxtEdicao.value,
-                    data: outData.value,
-                    hora: outHora.value
-                }
-                console.log('Antes: Data ' + outData.value);
-                console.log('Post: Hora ' + outHora.value);
-                ocultarModalEdicao();
-                updateData(registro);
+    let confirma = window.confirm('Salvar Alterações?');
+    if (confirma){
+        let idLi = document.getElementById(''+ contexto.id +'');
+        if (idLi){
+            let auxData = "data" + contexto.id;
+            let auxHora = "hora" + contexto.id;
+            let outData = document.getElementById(auxData);
+            let outHora = document.getElementById(auxHora);
+            console.log('Antes: Data ' + inputDataEdicao.value);
+            console.log('Post: Hora ' + inputHoraEdicao.value);
+            
+            idLi.firstChild.textContent = inputTxtEdicao.value;
+            outData.value = formatarData(inputDataEdicao.value);
+            outHora.value = inputHoraEdicao.value;
+            
+            registro = {
+                id: contexto.id,
+                tarefa: inputTxtEdicao.value,
+                data: outData.value,
+                hora: outHora.value
             }
-            else{
-                alert('Erro ao identificar registro...');
-            }
+            console.log('Antes: Data ' + outData.value);
+            console.log('Post: Hora ' + outHora.value);
+
+            ocultarModalEdicao();
+            updateData(registro);
         }
-    //}
+        else{
+            alert('Erro ao identificar registro...');
+        }
+    }
 }
 
 function exibirModalEdicao(){
@@ -290,18 +275,6 @@ function ocultarModalEdicao(){
     frameFundo.style.display = 'none';
 }
 
-/*
-function ocultarCampanha(){
-    let lcTxt1 = document.querySelector("#lcTxt1");
-    let lcTxt2 = document.querySelector("#lcTxt2");
-    let lcImg = document.querySelector("#logoCampanha");
-    let rcP = document.querySelector("#rcP");
-
-    lcTxt1.setAttribute("class", "hid");
-    lcTxt2.setAttribute("class", "hid");
-    lcImg.setAttribute("class", "hid");
-    rcP.setAttribute("class", "hid");
-}*/
 
 function formatarData(strData){
     let novaData = String(strData);
@@ -338,7 +311,6 @@ function sendData(idTarefa){
 
     let id = idTarefa.id; //document.getElementById;
     let tarefa = idTarefa.campoTarefa; //document.getElementById('inputEvento').value;
-    //let data = idTarefa.campoData; //new String(document.getElementById('inputData').value);
     let data = formatarData(idTarefa.campoData); //new String(document.getElementById('inputData').value);
     let hora = idTarefa.campoHorario; //new String(document.getElementById('inputHora').value);
  
@@ -390,17 +362,12 @@ function loadData(){
             txtHora.setAttribute('class', 'inputList');
             txtData.setAttribute('id', 'data' + dadosNanjiJSON[i].id);
             txtHora.setAttribute('id', 'hora' + dadosNanjiJSON[i].id);
-            //let newDataF = String(txtData.value);
-            //txtData.value = formatarData(newDataF);
-
             btnAlterar.classList.add('btnAcao');
             btnAlterar.setAttribute('src', 'images/editIcon.png');
-            //btnAlterar.innerHTML = 'ALT'//'<i class="fa fa-pencil"></i>';
             btnAlterar.setAttribute
             ('onclick', `alterar('${dadosNanjiJSON[i].id}','${String(dataFormatoOriginal(dadosNanjiJSON[i].data))}','${String(dadosNanjiJSON[i].hora)}');`); //String(dadosNanjiJSON[i].data)
 
             btnExcluir.classList.add('btnAcaoD');
-            //btnExcluir.innerHTML = 'EXC'//'<i class="fa fa-trash"></i>';
             btnExcluir.setAttribute('src', 'images/trashed.png');
             btnExcluir.setAttribute('onclick', 'excluir(' + dadosNanjiJSON[i].id + ');');
 
@@ -408,7 +375,6 @@ function loadData(){
             divSpan.appendChild(span);
 
             divInputs.setAttribute('class', 'divInpList');
-            //txtData.value = dataFormatoOriginal(dadosNanjiJSON[i].data);
             divInputs.appendChild(txtData);
             divInputs.appendChild(txtHora);
 
@@ -460,6 +426,7 @@ function updateData(registro){
     
     localStorage.setItem("dadosNanji", JSON.stringify(dadosNanjiJSON));
     exibirNanjiPop("Certinho, informações atualizadas! Você pode alterar quantas vezes precisar!");
+    
 }
 
 function validarInputs(){
@@ -475,7 +442,7 @@ function validarInputs(){
         inputNovaData.value = '';
         return false;
     }
-    //} else if(futureDate(inputNovaData.value) < hoje){
+
     let future = futureDate(inputNovaData.value);
 
     if(future == 1){
@@ -500,7 +467,7 @@ function validarInputs(){
     return true;
 }
 
-//--------  Função de Exibição de Camapanha de Saude - Mês Corrente-----------------
+//--------  Função de Exibição de Campanha de Saude - Mês Corrente -----------------
 
 function campanhaMensal (){
     let rightColumn = document.querySelector(".rightColumn");
@@ -724,6 +691,35 @@ function futureDate(agendado) {
         return 1;
     }
     if (mesMarcado < mesAtual) {
+        return 1;
+    }
+
+    if (mesMarcado == mesAtual) {
+        if (diaMarcado + 1 < diaAtual) {
+            console.log("Data futura e diferente de hoje.");
+            return 1;
+            }
+        if (diaMarcado + 1 == diaAtual) {
+            return 2;
+        }
+    }
+}
+
+function futureDateOld(agendado) {
+    let marcando = new Date(agendado);
+    let diaAtual = hoje.getDate();
+    let mesAtual = hoje.getMonth();
+    let anoAtual = hoje.getFullYear();
+    let diaMarcado = marcando.getDate();
+    let mesMarcado = marcando.getMonth();
+    let anoMarcado = marcando.getFullYear();
+
+    if (anoMarcado < anoAtual) {
+        console.log("Somente dia marcado: " + marcando.getDate() + " | Somente dia agendado: " + hoje.getDate());
+        console.log("Agendando data passada.");
+        return 1;
+    }
+    if (diaMarcado + 1 < diaAtual) {
         return 1;
     }
 
